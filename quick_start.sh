@@ -41,9 +41,9 @@ else
 	if [ "$already_built" == "ok" ]; then
 		echo "Docker started from cache"
 		echo "Access your $1 on port 5000 (api) or 8888 (notebook)"
-		docker run -it -p 8888:8888 -p 5000:5000 -e NOTEBOOK_PASSWORD=$NOTEBOOK_PASSWORD deoldify run_$1
+		docker run -it -p 5001:5001 --restart always -e NOTEBOOK_PASSWORD=$NOTEBOOK_PASSWORD deoldify run_$1
 	else
-		docker build -t deoldify -f Dockerfile . && docker run -it -p 8888:8888 -p 5000:5000 -e NOTEBOOK_PASSWORD=$NOTEBOOK_PASSWORD deoldify run_$1
+		docker build -t deoldify -f Dockerfile . && docker run -it -p 5001:5001 --restart always -e NOTEBOOK_PASSWORD=$NOTEBOOK_PASSWORD deoldify run_$1
 		echo "Docker build and started"
 		echo "Access your $1 on port 5000 (api) or 8888 (notebook)"
 	fi

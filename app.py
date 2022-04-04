@@ -8,6 +8,8 @@ from flask import request
 from flask import jsonify
 from flask import send_file
 
+from flask_cors import CORS
+
 
 from app_utils import download
 from app_utils import generate_random_filename
@@ -40,6 +42,7 @@ app = Flask(__name__)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+CORS(app)
 # define a predict function as an endpoint
 @app.route("/process", methods=["POST"])
 def process_image():
@@ -117,7 +120,7 @@ if __name__ == '__main__':
 
     image_colorizer = get_image_colorizer(artistic=True)
 
-    port = 5000
+    port = 5001
     host = "0.0.0.0"
 
     app.run(host=host, port=port, threaded=False)

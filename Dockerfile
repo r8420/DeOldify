@@ -35,6 +35,7 @@ RUN pip install --upgrade pip \
 		scikit-image==0.15.0 \
 		requests==2.21.0 \
 		ffmpeg-python==0.1.17 \
+		flask-cors \
 		youtube-dl>=2019.4.17 \
 		jupyterlab==1.2.4 \
 		opencv-python>=3.3.0.10 \
@@ -56,8 +57,9 @@ RUN chmod +x /usr/local/bin/run_notebook
 RUN chmod +x /usr/local/bin/run_image_api
 RUN chmod +x /usr/local/bin/run_video_api
 
-EXPOSE 8888
-EXPOSE 5000
+# EXPOSE 8888
+EXPOSE 5001
+EXPOSE 5002
 
 # run notebook
 # ENTRYPOINT ["sh", "run_notebook"]
